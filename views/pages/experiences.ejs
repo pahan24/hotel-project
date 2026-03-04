@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+    <section class="relative pt-32 pb-20 bg-dark text-white text-center">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Experiences Banner" class="w-full h-full object-cover" />
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 fade-up-enter mt-10">
+            <h1 class="text-5xl md:text-6xl font-serif mb-6">Experiences</h1>
+            <p class="text-xl font-light text-gray-300">Bespoke activities tailored for the discerning traveler.</p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-12 items-center fade-up-enter">
+            <div class="md:w-1/2">
+                <h2 class="text-gold uppercase tracking-widest text-sm font-semibold mb-4 text-center md:text-left">
+                    Wellness & Rejuvenation</h2>
+                <h3 class="text-3xl md:text-4xl font-serif text-dark mb-6 text-center md:text-left">The Signature Spa
+                </h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Immerse yourself in our tranquil spa, where ancient Ayurvedic traditions meet modern wellness
+                    techniques. Our therapists use organic, locally sourced oils and botanicals to create a personalized
+                    healing journey.
+                </p>
+                <div class="text-center md:text-left">
+                    <a href="/contact?subject=Spa Booking"
+                        class="btn-gold px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase inline-block">Book
+                        a Treatment</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative bg-gray-100 rounded-lg overflow-hidden shadow-2xl h-80">
+                <img src="https://images.unsplash.com/photo-1600334129128-685054110de4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                    class="object-cover w-full h-full" alt="Spa">
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>

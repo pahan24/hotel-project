@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+    <section class="min-h-screen py-32 bg-[#faf9f6] flex items-center justify-center">
+        <div class="max-w-2xl mx-auto px-4 text-center fade-up-enter mt-10">
+            <div class="bg-white p-12 rounded-xl shadow-2xl border border-gray-100">
+                <svg class="w-20 h-20 text-green-500 mx-auto mb-8" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+
+                <h1 class="text-4xl font-serif text-dark mb-4">Request Received</h1>
+                <h2 class="text-xl text-gold mb-8">Thank you for choosing The Grove Kandy.</h2>
+
+                <p class="text-gray-600 leading-relaxed mb-8">
+                    Your booking request has been successfully submitted and is currently <span
+                        class="font-bold">Pending</span>. We have sent a confirmation email with your booking summary
+                    PDF to the address provided.
+                </p>
+                <p class="text-gray-500 text-sm mb-10">
+                    Our reservations team will review your request and contact you shortly to finalize the details.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="/"
+                        class="btn-outline-gold px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase">Return
+                        Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>

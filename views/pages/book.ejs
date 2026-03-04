@@ -1,0 +1,182 @@
+<%- include('../partials/header') %>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-12 bg-dark text-white text-center">
+        <div class="max-w-4xl mx-auto px-4 fade-up-enter mt-10">
+            <h1 class="text-4xl md:text-5xl font-serif mb-4">Complete Your Reservation</h1>
+            <p class="text-lg font-light text-gray-300">You are booking the <span class="text-gold font-medium">
+                    <%= room.name %>
+                </span>.</p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="py-16 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-12">
+
+                <!-- Left: Form -->
+                <div class="lg:w-2/3">
+                    <div class="bg-white p-8 md:p-10 rounded-xl shadow-2xl border border-gray-100 fade-up-enter">
+                        <h3 class="text-2xl font-serif text-dark mb-6 border-b border-gray-100 pb-4">Guest Information
+                        </h3>
+
+                        <form action="/api/bookings/process" method="POST" class="space-y-6" id="bookingForm">
+                            <input type="hidden" name="roomId" value="<%= room._id %>">
+                            <input type="hidden" name="roomPrice" value="<%= room.pricePerNight %>">
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-1">Full
+                                        Name *</label>
+                                    <input type="text" id="customerName" name="customerName" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-gold focus:border-gold transition-colors">
+                                </div>
+                                <div>
+                                    <label for="customerEmail"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                                    <input type="email" id="customerEmail" name="customerEmail" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-gold focus:border-gold transition-colors">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="customerPhone"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                                    <input type="tel" id="customerPhone" name="customerPhone" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-gold focus:border-gold transition-colors">
+                                </div>
+                                <div>
+                                    <label for="guests" class="block text-sm font-medium text-gray-700 mb-1">Number of
+                                        Guests * <span class="text-xs text-gray-400">(Max <%= room.maxOccupancy %>
+                                                )</span></label>
+                                    <input type="number" id="guests" name="guests" min="1"
+                                        max="<%= room.maxOccupancy %>" value="2" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-gold focus:border-gold transition-colors">
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-serif text-dark mb-6 mt-10 border-b border-gray-100 pb-4">Stay
+                                Details</h3>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="checkInDate"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Check-in Date *</label>
+                                    <input type="date" id="checkInDate" name="checkInDate" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-gold focus:border-gold transition-colors">
+                                </div>
+                                <div>
+                                    <label for="checkOutDate"
+                                        class="block text-sm font-medium text-gray-700 mb-1">Check-out Date *</label>
+                                    <input type="date" id="checkOutDate" name="checkOutDate" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-gold focus:border-gold transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="specialRequests"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Special Requests
+                                    (Optional)</label>
+                                <textarea id="specialRequests" name="specialRequests" rows="4"
+                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-gold focus:border-gold transition-colors"
+                                    placeholder="Any dietary requirements, arrival times, or celebratory notes..."></textarea>
+                            </div>
+
+                            <div class="pt-6">
+                                <button type="submit"
+                                    class="w-full btn-gold py-4 rounded-lg text-lg font-bold tracking-wider uppercase shadow-xl hover:shadow-gold/50 transition-all flex justify-center items-center">
+                                    Confirm & Request Booking
+                                </button>
+                                <p class="text-center text-xs text-gray-500 mt-4">By clicking confirm, you agree to our
+                                    Terms & Conditions. No payment is required right now. We will contact you to
+                                    finalize the reservation.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right: Order Summary Sidebar -->
+                <div class="lg:w-1/3 fade-up-enter" style="transition-delay: 150ms;">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 sticky top-28">
+                        <h3 class="text-xl font-serif text-dark mb-6 border-b border-gray-100 pb-4">Booking Summary</h3>
+
+                        <div class="mb-6">
+                            <img src="<%= room.images && room.images.length > 0 ? room.images[0] : 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&w=400&q=80' %>"
+                                alt="<%= room.name %>" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <h4 class="font-bold text-dark text-lg">
+                                <%= room.name %>
+                            </h4>
+                            <p class="text-sm text-gold font-semibold uppercase tracking-wider">
+                                <%= room.type %>
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-600 mb-6 border-b border-gray-100 pb-6">
+                            <div class="flex justify-between">
+                                <span>Price per night:</span>
+                                <span class="font-medium text-dark" id="summaryPricePerNight">$<%= room.pricePerNight %>
+                                        </span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Number of nights:</span>
+                                <span class="font-medium text-dark" id="summaryNights">0</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-lg text-dark font-serif font-bold">Estimated Total:</span>
+                            <span class="text-2xl text-gold font-bold" id="summaryTotal">$0</span>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded text-xs text-gray-500 text-center">
+                            Secure booking processing. Your information is encrypted.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple date & price calculation logic
+        const checkInInput = document.getElementById('checkInDate');
+        const checkOutInput = document.getElementById('checkOutDate');
+        const summaryNights = document.getElementById('summaryNights');
+        const summaryTotal = document.getElementById('summaryTotal');
+        const pricePerNight = <%= room.pricePerNight %>;
+
+        // Set min date to today
+        const today = new Date().toISOString().split('T')[0];
+        checkInInput.setAttribute('min', today);
+        checkOutInput.setAttribute('min', today);
+
+        function updateSummary() {
+            const checkIn = new Date(checkInInput.value);
+            const checkOut = new Date(checkOutInput.value);
+
+            if (checkIn && checkOut && checkOut > checkIn) {
+                const diffTime = Math.abs(checkOut - checkIn);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                summaryNights.textContent = diffDays;
+                summaryTotal.textContent = '$' + (diffDays * pricePerNight);
+            } else {
+                summaryNights.textContent = '0';
+                summaryTotal.textContent = '$0';
+            }
+        }
+
+        checkInInput.addEventListener('change', () => {
+            // Ensure checkout is after checkin
+            const nextDay = new Date(checkInInput.value);
+            nextDay.setDate(nextDay.getDate() + 1);
+            checkOutInput.setAttribute('min', nextDay.toISOString().split('T')[0]);
+            updateSummary();
+        });
+        checkOutInput.addEventListener('change', updateSummary);
+    </script>
+
+    <%- include('../partials/footer') %>

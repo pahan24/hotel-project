@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+
+    <!-- Header Banner -->
+    <section class="relative pt-32 pb-20 bg-dark text-white text-center">
+        <!-- Using a generic luxury background image -->
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Offers Banner" class="w-full h-full object-cover" />
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 fade-up-enter mt-10">
+            <h1 class="text-5xl md:text-6xl font-serif mb-6">Exclusive Offers</h1>
+            <p class="text-xl font-light text-gray-300">Curated packages to elevate your stay at The Grove Kandy.</p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <% if (offers.length===0) { %>
+                <div class="text-center py-20">
+                    <h3 class="text-2xl font-serif text-dark mb-4">No special offers at this moment.</h3>
+                    <p class="text-gray-500">Sign up for our newsletter to be informed of our latest promotions.</p>
+                </div>
+                <% } else { %>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <% offers.forEach(offer=> { %>
+                            <div
+                                class="bg-white rounded-lg overflow-hidden shadow-xl flex flex-col fade-up-enter transform transition duration-300 hover:-translate-y-2 group border border-gray-100">
+                                <div class="h-48 relative overflow-hidden bg-gray-100">
+                                    <img src="<%= offer.image %>" alt="<%= offer.title %>"
+                                        class="w-full h-full object-cover transition duration-700 group-hover:scale-105 opacity-80 mix-blend-multiply">
+                                    <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
+                                        <h4
+                                            class="text-2xl md:text-3xl font-serif text-dark font-bold bg-white/90 backdrop-blur px-4 py-2 rounded shadow-lg">
+                                            <%= offer.discountDetails %>
+                                        </h4>
+                                    </div>
+                                    <div
+                                        class="absolute top-4 right-4 bg-gold text-white text-xs font-bold px-3 py-1 rounded">
+                                        Valid until: <%= offer.validUntil.toLocaleDateString() %>
+                                    </div>
+                                </div>
+                                <div class="p-8 flex-grow flex flex-col">
+                                    <h4 class="text-xl font-serif text-dark mb-3">
+                                        <%= offer.title %>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm mb-6 flex-grow whitespace-pre-line">
+                                        <%= offer.description %>
+                                    </p>
+
+                                    <a href="/contact?subject=Claim Offer: <%= offer.title %>"
+                                        class="btn-outline-gold px-6 py-2 rounded-full text-xs font-semibold tracking-wide uppercase block text-center mt-auto border-gold hover:bg-gold hover:text-white transition-colors">Claim
+                                        Offer</a>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                    <% } %>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>

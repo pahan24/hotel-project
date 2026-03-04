@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grove Kandy | <%= typeof title !=='undefined' ? title : 'Luxury Hotel in Sri Lanka' %>
+    </title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Experience heritage luxury at The Grove Kandy. Book your stay, dine at our exclusive restaurant, and explore iconic events in Sri Lanka.">
+    <meta name="keywords"
+        content="The Grove Kandy, Luxury Hotel Kandy, Sri Lanka Hotel, Heritage Hotel, Best Hotel in Kandy">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#c5a365',
+                            dark: '#aa8a50'
+                        },
+                        dark: '#1a1a1a'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="font-sans antialiased text-gray-800">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="font-serif text-2xl font-bold tracking-widest uppercase text-dark">
+                        The Grove <span class="text-gold block text-xs tracking-normal mt-1">Kandy</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="/" class="text-sm font-medium hover:text-gold transition-colors duration-200">Home</a>
+                    <a href="/stay" class="text-sm font-medium hover:text-gold transition-colors duration-200">Stay</a>
+                    <a href="/dine" class="text-sm font-medium hover:text-gold transition-colors duration-200">Dine</a>
+                    <a href="/events"
+                        class="text-sm font-medium hover:text-gold transition-colors duration-200">Events</a>
+                    <a href="/offers"
+                        class="text-sm font-medium hover:text-gold transition-colors duration-200">Offers</a>
+                    <a href="/history"
+                        class="text-sm font-medium hover:text-gold transition-colors duration-200">History</a>
+                    <a href="/experiences"
+                        class="text-sm font-medium hover:text-gold transition-colors duration-200">Experiences</a>
+                    <a href="/contact"
+                        class="text-sm font-medium hover:text-gold transition-colors duration-200">Contact</a>
+                    <a href="/stay"
+                        class="btn-gold px-6 py-2 rounded-full text-sm font-semibold tracking-wide uppercase">Book
+                        Now</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-800 hover:text-gold focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="/" class="block px-3 py-2 text-base font-medium hover:text-gold">Home</a>
+                <a href="/stay" class="block px-3 py-2 text-base font-medium hover:text-gold">Stay</a>
+                <a href="/dine" class="block px-3 py-2 text-base font-medium hover:text-gold">Dine</a>
+                <a href="/events" class="block px-3 py-2 text-base font-medium hover:text-gold">Events</a>
+                <a href="/offers" class="block px-3 py-2 text-base font-medium hover:text-gold">Offers</a>
+                <a href="/history" class="block px-3 py-2 text-base font-medium hover:text-gold">History</a>
+                <a href="/experiences" class="block px-3 py-2 text-base font-medium hover:text-gold">Experiences</a>
+                <a href="/contact" class="block px-3 py-2 text-base font-medium hover:text-gold">Contact</a>
+                <a href="/stay"
+                    class="block mt-4 btn-gold w-max mx-auto px-6 py-2 rounded-full text-sm font-semibold uppercase">Book
+                    Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="min-h-screen pt-20">

@@ -1,0 +1,76 @@
+<%- include('../partials/header') %>
+
+    <!-- Header Banner -->
+    <section class="relative pt-32 pb-20 bg-dark text-white text-center">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Events Banner" class="w-full h-full object-cover" />
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 fade-up-enter mt-10">
+            <h1 class="text-5xl md:text-6xl font-serif mb-6">Events & Gatherings</h1>
+            <p class="text-xl font-light text-gray-300">Join us for exclusive experiences and memorable celebrations.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <% if (events.length===0) { %>
+                <div class="text-center py-20">
+                    <h3 class="text-2xl font-serif text-dark mb-4">No upcoming events scheduled.</h3>
+                    <p class="text-gray-500">Please check back later or contact us to host your own event.</p>
+                </div>
+                <% } else { %>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <% events.forEach(event=> { %>
+                            <div
+                                class="bg-white rounded-lg overflow-hidden shadow-xl flex flex-col fade-up-enter transform transition duration-300 hover:-translate-y-2">
+                                <div class="h-56 relative overflow-hidden group">
+                                    <img src="<%= event.image %>" alt="<%= event.title %>"
+                                        class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                                    <div
+                                        class="absolute top-4 right-4 bg-gold text-white text-xs font-bold px-3 py-1 rounded backdrop-blur bg-opacity-90 uppercase tracking-widest shadow">
+                                        <%= event.date.toDateString() %>
+                                    </div>
+                                </div>
+                                <div class="p-8 flex-grow flex flex-col">
+                                    <h4 class="text-2xl font-serif text-dark mb-2">
+                                        <%= event.title %>
+                                    </h4>
+                                    <div class="flex items-center text-gray-500 text-sm mb-4 space-x-4">
+                                        <span><svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            <%= event.time %>
+                                        </span>
+                                        <span><svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                                </path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                            <%= event.location %>
+                                        </span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-6 flex-grow">
+                                        <%= event.description %>
+                                    </p>
+
+                                    <% if (event.allowRegistration) { %>
+                                        <a href="/contact?subject=Register for <%= event.title %>"
+                                            class="btn-outline-gold px-6 py-2 rounded-full text-xs font-semibold tracking-wide uppercase block text-center mt-auto border-gold hover:bg-gold hover:text-white transition-colors">Register
+                                            Interest</a>
+                                        <% } %>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                    <% } %>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>

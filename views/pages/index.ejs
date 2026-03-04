@@ -1,0 +1,210 @@
+<%- include('../partials/header') %>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Simulated Video Background (Using a premium static image + CSS for now/can swap with actual video) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1542314831-c6a4d27ce6a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="The Grove Kandy Exterior" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto fade-up-enter mt-16">
+            <span class="text-gold uppercase tracking-widest text-sm font-semibold mb-4 block">Welcome to
+                Heritage</span>
+            <h1 class="text-5xl md:text-7xl text-white font-serif mb-6 leading-tight">
+                Discover Serenity at <br /><span class="text-gold">The Grove</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl font-light mb-10 tracking-wide max-w-2xl mx-auto">
+                Experience unparalleled luxury and breathtaking views in the historic heart of Kandy, Sri Lanka.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="/stay"
+                    class="btn-gold px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase inline-block">
+                    Reserve Your Stay
+                </a>
+                <a href="/experiences"
+                    class="bg-transparent border border-white text-white hover:bg-white hover:text-dark px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase transition-colors inline-block">
+                    Explore Experiences
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <svg class="w-6 h-6 text-white text-opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-up-enter">
+            <h2 class="text-gold uppercase tracking-widest text-sm font-semibold mb-4">The Estate</h2>
+            <h3 class="text-4xl font-serif text-dark mb-8">A Sanctuary of Elegance</h3>
+            <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed text-lg mb-12">
+                Nestled amid lush greenery and mist-kissed hills, The Grove Kandy offers a seamless blend of colonial
+                heritage and contemporary opulence. Every detail is curated to provide an unforgettable retreat from the
+                ordinary.
+            </p>
+            <a href="/history"
+                class="text-dark font-medium border-b-2 border-gold pb-1 hover:text-gold transition-colors block w-max mx-auto uppercase tracking-wide text-sm">Read
+                Our Story</a>
+        </div>
+    </section>
+
+    <!-- Featured Rooms Section -->
+    <section class="py-24 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-16 fade-up-enter">
+                <div>
+                    <h2 class="text-gold uppercase tracking-widest text-sm font-semibold mb-2">Accommodations</h2>
+                    <h3 class="text-4xl font-serif text-dark">Luxury Awaits</h3>
+                </div>
+                <a href="/stay"
+                    class="hidden md:block btn-outline-gold px-6 py-2 rounded-full text-sm font-semibold tracking-wide uppercase">View
+                    All Rooms</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <% if (featuredRooms && featuredRooms.length> 0) { %>
+                    <% featuredRooms.forEach((room, index)=> { %>
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:-translate-y-2 transition-transform duration-300 fade-up-enter"
+                            style="transition-delay: <%= index * 150 %>ms;">
+                            <div class="h-64 overflow-hidden relative group">
+                                <img src="<%= room.images && room.images.length > 0 ? room.images[0] : 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' %>"
+                                    alt="<%= room.name %>"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                <div
+                                    class="absolute top-4 right-4 bg-white/90 backdrop-blur text-dark text-xs font-bold px-3 py-1 rounded uppercase tracking-wide">
+                                    $<%= room.pricePerNight %> / Night
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-serif text-dark mb-2">
+                                    <%= room.name %>
+                                </h4>
+                                <p class="text-sm text-gold uppercase tracking-wider font-semibold mb-4">
+                                    <%= room.type %>
+                                </p>
+                                <p class="text-gray-600 text-sm mb-6 line-clamp-3">
+                                    <%= room.description %>
+                                </p>
+                                <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                                    <div class="flex space-x-2 text-gray-400">
+                                        <span title="Max <%= room.maxOccupancy %> Guests"><svg class="w-5 h-5 inline"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                                </path>
+                                            </svg></span>
+                                    </div>
+                                    <a href="/stay/book/<%= room._id %>"
+                                        class="text-gold font-medium hover:text-gold-dark text-sm uppercase tracking-wide flex items-center group">
+                                        Book Now <svg
+                                            class="w-4 h-4 ml-1 transform transition-transform group-hover:translate-x-1"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } else { %>
+                                <!-- Static Fallback if no DB items -->
+                                <div
+                                    class="bg-white rounded-lg overflow-hidden shadow-xl hover:-translate-y-2 transition-transform duration-300 fade-up-enter">
+                                    <div class="h-64 overflow-hidden relative group">
+                                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                    </div>
+                                    <div class="p-8">
+                                        <h4 class="text-2xl font-serif text-dark mb-2">Heritage Suite</h4>
+                                        <p class="text-gray-600 text-sm mb-6">Experience the pinnacle of colonial luxury
+                                            blended with modern amenities.</p>
+                                        <a href="/stay"
+                                            class="text-gold font-medium hover:text-gold-dark text-sm uppercase tracking-wide">Explore
+                                            Rooms &rarr;</a>
+                                    </div>
+                                </div>
+                                <% } %>
+            </div>
+            <div class="mt-10 text-center md:hidden">
+                <a href="/stay"
+                    class="btn-outline-gold px-6 py-2 rounded-full text-sm font-semibold tracking-wide uppercase inline-block">View
+                    All Rooms</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Split Discovery Section -->
+    <section class="py-0 flex flex-col md:flex-row min-h-[600px]">
+        <div class="md:w-1/2 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="Fine Dining"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/50 transition-colors duration-500 group-hover:bg-black/60"></div>
+            <div class="relative z-10 h-full flex flex-col justify-center items-center text-center p-12 text-white">
+                <h2 class="text-gold uppercase tracking-widest text-sm font-semibold mb-3">Culinary Excellence</h2>
+                <h3 class="text-4xl font-serif mb-6">Savor The Extraordinary</h3>
+                <p class="mb-8 max-w-md font-light">Indulge in a symphony of flavors crafted by our master chefs,
+                    featuring locally sourced ingredients and international flair.</p>
+                <a href="/dine"
+                    class="bg-white text-dark hover:bg-gold hover:text-white px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase transition-colors">Discover
+                    Dining</a>
+            </div>
+        </div>
+        <div class="md:w-1/2 relative overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="Spa & Wellness"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/50 transition-colors duration-500 group-hover:bg-black/60"></div>
+            <div class="relative z-10 h-full flex flex-col justify-center items-center text-center p-12 text-white">
+                <h2 class="text-gold uppercase tracking-widest text-sm font-semibold mb-3">Rejuvenate</h2>
+                <h3 class="text-4xl font-serif mb-6">Spa & Wellness</h3>
+                <p class="mb-8 max-w-md font-light">Escape to a world of tranquility. Our holistic spa treatments will
+                    restore your mind, body, and soul.</p>
+                <a href="/experiences"
+                    class="bg-white text-dark hover:bg-gold hover:text-white px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase transition-colors">View
+                    Experiences</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Offers Preview -->
+    <% if (activeOffers && activeOffers.length> 0) { %>
+        <section class="py-24 bg-dark text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center fade-up-enter">
+                <h2 class="text-gold uppercase tracking-widest text-sm font-semibold mb-4">Exclusive Deals</h2>
+                <h3 class="text-4xl font-serif mb-12">Elevate Your Stay</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <% activeOffers.forEach(offer=> { %>
+                        <div
+                            class="border border-gray-700 p-8 rounded-lg bg-gray-900/50 backdrop-blur hover:border-gold transition-colors text-left transform hover:-translate-y-1 duration-300">
+                            <h4 class="text-2xl font-serif mb-2 text-white">
+                                <%= offer.title %>
+                            </h4>
+                            <p class="text-gold font-bold text-lg mb-4">
+                                <%= offer.discountDetails %>
+                            </p>
+                            <p class="text-gray-400 text-sm mb-6">
+                                <%= offer.description %>
+                            </p>
+                            <div class="mt-auto">
+                                <a href="/offers"
+                                    class="text-white text-sm uppercase tracking-wide font-semibold border-b border-gold pb-1 hover:text-gold transition-colors">Claim
+                                    Offer</a>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </section>
+        <% } %>
+
+            <%- include('../partials/footer') %>
