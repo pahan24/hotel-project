@@ -1,0 +1,11 @@
+<%- include('../partials/header', { title: 'Booking Confirmed' }) %>
+<section class="max-w-3xl mx-auto px-4 py-16 text-center">
+  <h1 class="text-4xl font-serif">Thank You, <%= booking.customerName %>!</h1>
+  <p class="mt-3">Your booking for <strong><%= booking.roomType %></strong> is now <strong><%= booking.status %></strong>.</p>
+  <p>Stay Dates: <%= new Date(booking.checkIn).toDateString() %> - <%= new Date(booking.checkOut).toDateString() %></p>
+  <p class="mt-2">Total: USD <%= booking.totalAmount %></p>
+  <% if (booking.receiptPath) { %>
+    <a class="inline-block mt-5 bg-amber-500 px-5 py-2 rounded" href="<%= booking.receiptPath %>" download>Download PDF Receipt</a>
+  <% } %>
+</section>
+<%- include('../partials/footer') %>
